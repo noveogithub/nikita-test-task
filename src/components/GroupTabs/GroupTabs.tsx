@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { map, Dictionary } from 'lodash';
-import { TabList, Tab, TabPanel, useTabState } from 'welcome-ui';
+import { Alert, TabList, Tab, TabPanel, useTabState } from 'welcome-ui';
 
 import { IJob } from '../../types/IJob';
 import { IPreview } from '../../types/IPreview';
@@ -12,6 +12,11 @@ type GroupTabsProps = {
 }
 
 export const GroupTabs: React.FC<GroupTabsProps> = memo(({ groups, previewJob }) => {
+
+  if (Object.keys(groups).length === 0 || Object.values(groups).every(group => group.length === 0)) {
+    return <Alert variant="info">No data to be displayed</Alert>
+  }
+
   const tab = useTabState({
     selectedId: Object.keys(groups)[0],
   });

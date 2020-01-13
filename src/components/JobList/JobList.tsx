@@ -16,6 +16,8 @@ export const JobList: React.FC<JobListProps> = memo(({ items, onOpen }) => {
     {items.map(job => <JobItem
       key={job.id}
       name={job.name}
+      profile={job.profile}
+      description={job.description}
       contractType={job.contract_type?.en || null}
       office={job.office.name}
       onOpen={() => onOpen({

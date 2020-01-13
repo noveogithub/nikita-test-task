@@ -1,14 +1,29 @@
-import React, { memo } from 'react';
-import { Box, Button, Text } from 'welcome-ui';
+import React, { memo, useContext } from 'react';
+import { Box, Button, Text, Tooltip } from 'welcome-ui';
+import Highlighter from "react-highlight-words";
+import { SearchContext } from '../../contexts/SearchContext';
 
 type JobItemProps = {
   name: string;
+  profile: string;
+  description: string;
   contractType: string | null;
   office: string;
   onOpen: () => void;
 }
 
-export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, office, onOpen }) => {
+const matchesSearchInside = (search: string, profile: string, description: string) => {
+  if (!search) {
+    return false;
+  }
+  return [profile, description].map(v => v.toLowerCase()).some(v => v.includes(search.toString()));
+}
+
+export const JobItem: React.FC<JobItemProps> = memo(({ name, profile, description, contractType, office, onOpen }) => {
+  const search = useContext(SearchContext);
+
+  const matches = matchesSearchInside(search, profile, description);
+
   return <Box
     display="flex"
     justifyContent="space-between"
@@ -18,9 +33,13 @@ export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, offic
     padding="15px"
   >
     <header>
-      <Text variant="body1">{name}</Text>
-      <Text variant="body2">{contractType} - {office}</Text>
+      <Text variant="body1"><Highlighter searchWords={search.split(' ')} textToHighlight={name} /></Text>
+      <Text variant="body2"><Highlighter searchWords={search.split(' ')} textToHighlight={contractType || ''} /> - {office}</Text>
     </header>
-    <Button onClick={onOpen}>See more</Button>
+    <Button onClick={onOpen} variant={matches ? 'primary-warning' : 'primary'}>
+      {matches ? <Tooltip content="Search matches inside">
+        <span>See more</span>
+      </Tooltip> : <span>See more</span>}
+    </Button>
   </Box>
 });

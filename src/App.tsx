@@ -17,6 +17,7 @@ import { previewJob } from './redux/actions/preview';
 import { IPreview } from './types/IPreview';
 import { JobModal } from './components/JobModal';
 import { GroupTabs } from './components/GroupTabs';
+import { SearchContext } from './contexts/SearchContext';
 
 const Heading = styled.header`
   text-align: center;
@@ -49,23 +50,25 @@ const App: React.FC<AppProps> = ({
 
 
   return (<Box padding="25px">
-    <Heading>
-      <Text variant="h1">Our offers</Text>
-    </Heading>
-    {previewingJob && <JobModal onClose={() => previewJob({
-      jobId: null,
-      isOpen: false,
-    })} {...previewingJob} />}
-    <Filters
-      filters={filters}
-      onChange={onFilterChange}
-      contractTypes={contractTypes}
-    />
-    {loading ? <Alert variant="info">Wait a moment...</Alert> : <GroupTabs
-      key={filters.groupBy}
-      groups={groups}
-      previewJob={previewJob}
-    />}
+    <SearchContext.Provider value={filters.search}>
+      <Heading>
+        <Text variant="h1">Our offers</Text>
+      </Heading>
+      {previewingJob && <JobModal onClose={() => previewJob({
+        jobId: null,
+        isOpen: false,
+      })} {...previewingJob} />}
+      <Filters
+        filters={filters}
+        onChange={onFilterChange}
+        contractTypes={contractTypes}
+      />
+      {loading ? <Alert variant="info">Wait a moment...</Alert> : <GroupTabs
+        key={filters.groupBy}
+        groups={groups}
+        previewJob={previewJob}
+      />}
+    </SearchContext.Provider>
   </Box>)
 }
 

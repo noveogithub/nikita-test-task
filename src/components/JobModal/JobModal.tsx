@@ -42,7 +42,7 @@ export const JobModal: React.FC<JobModalProps> = memo(({ onClose, name, descript
   return <Overlay onClick={onClose}>
     <Box backgroundColor="light.900" padding="50px" onClick={prevent}>
       <h1>{name}</h1>
-      <h2>Description</h2>
+      <h2>Job Description</h2>
       <div dangerouslySetInnerHTML={{ __html: description }} />
       <h2>Profile</h2>
       <div dangerouslySetInnerHTML={{ __html: profile }} />

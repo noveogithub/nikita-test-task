@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Alert, Box, Text } from 'welcome-ui';
-import { Dictionary, map } from 'lodash';
+import { Dictionary } from 'lodash';
 import styled from '@xstyled/styled-components';
 
 import { jobRequest, filtersChange } from './redux/actions/jobs';

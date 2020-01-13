@@ -37,12 +37,12 @@ export const Filters: React.FC<FiltersProps> = memo(({
   filters,
   onChange,
 }) => {
-  const callback = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target as HTMLInputElement;
+  const onSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target as HTMLInputElement;
 
     onChange({
       ...filters,
-      [name]: value
+      search: value
     });
   };
 
@@ -69,7 +69,11 @@ export const Filters: React.FC<FiltersProps> = memo(({
 
   return <Wrapper>
     <Item>
-      <InputText placeholder="Your dream job?" name="search" value={filters.search || ''} onChange={callback} />
+      <InputText
+        placeholder="Your dream job?"
+        value={filters.search || ''}
+        onChange={onSearchChange}
+      />
     </Item>
     <Item>
       <Select
@@ -78,10 +82,13 @@ export const Filters: React.FC<FiltersProps> = memo(({
         options={contractTypes.map(v => ({ label: v === NONE ? 'All Types' : v, value: v }))}
       />
     </Item>
-    <Item><DatePicker iconPlacement="right" name="publishedAt" value={filters.publishedAt?.toString() || ''} onChange={onDateChange} type="date" /></Item>
+    <Item>
+      <DatePicker
+        value={filters.publishedAt?.toString() || ''}
+        onChange={onDateChange} />
+    </Item>
     <Item>
       <Select
-        name="groupBy"
         value={filters.groupBy}
         onChange={onGroupByChange}
         options={OPTIONS}

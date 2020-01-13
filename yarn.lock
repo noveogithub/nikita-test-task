@@ -1821,6 +1821,21 @@
     "@webassemblyjs/wast-parser" "1.8.5"
     "@xtuc/long" "4.2.2"
 
+"@welcome-ui/core@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@welcome-ui/core/-/core-1.2.0.tgz#c1a389f4efd5895ef322945f5788a63b2cd1b927"
+  integrity sha512-Q252eAveeBxkmNTYg6DHE2uoVFUqk5YBVamx/SQoOb+b7clz7Sz3kA1wpngy+vwul+kQDr+HEJplyFxCq2yUPg==
+  dependencies:
+    "@welcome-ui/utils" "^1.1.4"
+    lodash.get "^4.4.2"
+    lodash.merge "^4.6.1"
+    polished "^3.4.1"
+
+"@welcome-ui/utils@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@welcome-ui/utils/-/utils-1.1.4.tgz#5f9da11ee82e4271f67b159f114d8a52f14de7f5"
+  integrity sha512-MHncgRiN5ltVx9e+57SPmb453x5E9a47D6ThJQIW2aznAhUbQfO+HaMB7A3bsFwtHFR7rFhEgaN9O6ijC/QLMQ==
+
 "@xstyled/core@^1.15.1":
   version "1.15.1"
   resolved "https://registry.yarnpkg.com/@xstyled/core/-/core-1.15.1.tgz#8b6d37e95b2abd95a396ab8d85b9e7c41c05249a"
@@ -8922,6 +8937,14 @@ react-error-overlay@^6.0.4:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.4.tgz#0d165d6d27488e660bc08e57bdabaad741366f7a"
   integrity sha512-ueZzLmHltszTshDMwyfELDq8zOA803wQ1ZuzCccXa1m57k1PxSHfflPD5W9YIiTXLs0JTLzoj6o1LuM5N6zzNA==
 
+react-final-form@^6.3.3:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-6.3.3.tgz#8856a92278de2733f83e88c75d9ef347294a66a0"
+  integrity sha512-hFLwLpLasywky46SovNEGlym7+N+3RKge1/cg+/fVec/YY0l4g0ihgjRof6PbkiYe4qGjKbwbrvlgfZ9/Uf8vw==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    ts-essentials "^3.0.2"
+
 react-flatten-children@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-flatten-children/-/react-flatten-children-1.0.0.tgz#9f29e3a54aa0e990c2b3a7e572dec5e225d59432"
@@ -10495,6 +10518,11 @@ tr46@^1.0.1:
   integrity sha1-qLE/1r/SSJUZZ0zN5VujaTtwbQk=
   dependencies:
     punycode "^2.1.0"
+
+ts-essentials@^3.0.2:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-3.0.5.tgz#34a45f9f2b3817ed6756a4a876a0543a1cedc12a"
+  integrity sha512-2aZyDplUuZ44ABrP9Z8kWzgrCLgntyro+WZMXgJOp5Lhx7e/N3eIDeDQUOHNUKDVyGrGtlOYy1WMkOrZBqLiUA==
 
 ts-pnp@1.1.5, ts-pnp@^1.1.2:
   version "1.1.5"

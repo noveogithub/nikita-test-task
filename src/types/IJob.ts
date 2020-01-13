@@ -8,7 +8,7 @@ export type IJob = {
   description: string;
   published_at: string;
   profile: string;
-  contract_type?: IContractType;
+  contract_type: IContractType;
   office: {
     name: string;
   };

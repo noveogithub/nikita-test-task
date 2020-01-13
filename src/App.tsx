@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Dictionary } from 'lodash';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { jobRequest, filtersChange } from './redux/actions/jobs';
+import { getGroupedJobOffers } from './redux/selectors/getGroupedJobOffers';
+import { IStore } from './redux/store/types';
+import { IJob } from './types/IJob';
+import { IFilters } from './types/IFilters';
+import { getCurrentFilters } from './redux/selectors/getCurrentFilters';
+import { getContractTypes } from './redux/selectors/getContractTypes';
+
+type AppProps = {
+  onRequest: () => void;
+  loading: boolean;
+  groups: Dictionary<IJob[]>;
+  filters: IFilters;
+  contractTypes: string[];
+  onFilterChange: (filters: IFilters) => void;
 }
 
-export default App;
+const App: React.FC<AppProps> = ({ loading, groups, filters, onFilterChange, onRequest, contractTypes }) => {
+  useEffect(() => {
+    onRequest();
+  }, [onRequest]);
+
+  return <h1>Our offers</h1>
+}
+
+const mapStateToProps = (state: IStore) => ({
+  groups: getGroupedJobOffers(state),
+  loading: state.jobs.loading,
+  filters: getCurrentFilters(state),
+  contractTypes: getContractTypes(state)
+})
+
+const mapDispatchToProps = {
+  onRequest: jobRequest,
+  onFilterChange: filtersChange,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

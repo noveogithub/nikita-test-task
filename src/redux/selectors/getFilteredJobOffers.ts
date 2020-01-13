@@ -11,7 +11,7 @@ export const getFilteredJobOffers = createSelector(
   getCurrentFilters,
   (offers, filters) => {
     const iteratee = (job: IJob) => {
-      const matchesSearch = !filters.search || [job.name, job.description, job.profile].map(v => v.toLowerCase()).some(v => v.includes(filters.search));
+      const matchesSearch = !filters.search || [job.name, job.description, job.profile, job.contract_type.en].map(v => v.toLowerCase()).some(v => v.includes(filters.search));
       const matchesContract = filters.contractType === NONE || job.contract_type.en.toLowerCase().includes(filters.contractType.toLowerCase());
       const matchesDate = !filters.publishedAt || isAfter(new Date(job.published_at), new Date(filters.publishedAt));
 

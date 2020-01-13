@@ -1,17 +1,25 @@
 import React, { memo } from 'react';
+import { Box, Button } from 'welcome-ui';
 
 type JobItemProps = {
   name: string;
   contractType: string | null;
-  description: string;
-  profile: string;
+  office: string;
 }
 
-export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, description, profile }) => {
-  return <section>
-    <header>{name}</header>
-    <sub>{contractType}</sub>
-    <div dangerouslySetInnerHTML={{ __html: description }} />
-    <div dangerouslySetInnerHTML={{ __html: profile }} />
-  </section>
+export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, office }) => {
+  return <Box
+    display="flex"
+    justifyContent="space-between"
+    alignItems="center"
+    backgroundColor="primary.100"
+    margin="0 0 10px 0"
+    padding="15px"
+  >
+    <header>
+      <h1>{name}</h1>
+      <h2>{contractType} - {office}</h2>
+    </header>
+    <Button>See more</Button>
+  </Box>
 });

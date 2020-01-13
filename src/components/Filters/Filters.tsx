@@ -3,6 +3,7 @@ import { DatePicker, InputText, Select } from 'welcome-ui';
 
 import styled from '@xstyled/styled-components';
 import { IFilters } from '../../types/IFilters';
+import { NONE } from '../../redux/selectors/getGroupedJobOffers';
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const Item = styled.div`
 
 const OPTIONS = [{
   label: 'None',
-  value: 'none',
+  value: NONE,
 }, {
   label: 'Office',
   value: 'office.name',
@@ -59,7 +60,12 @@ export const Filters: React.FC<FiltersProps> = memo(({
     });
   };
 
-  const onDateChange = console.log;
+  const onDateChange = (date: Date) => {
+    onChange({
+      ...filters,
+      publishedAt: date,
+    })
+  };
 
   return <Wrapper>
     <Item>
@@ -69,7 +75,7 @@ export const Filters: React.FC<FiltersProps> = memo(({
       <Select
         value={filters.contractType}
         onChange={onContractTypeChange}
-        options={contractTypes.map(v => ({ label: v, value: v }))}
+        options={contractTypes.map(v => ({ label: v === NONE ? 'All Types' : v, value: v }))}
       />
     </Item>
     <Item><DatePicker iconPlacement="right" name="publishedAt" value={filters.publishedAt?.toString() || ''} onChange={onDateChange} type="date" /></Item>

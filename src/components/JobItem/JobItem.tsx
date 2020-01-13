@@ -5,9 +5,10 @@ type JobItemProps = {
   name: string;
   contractType: string | null;
   office: string;
+  onOpen: () => void;
 }
 
-export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, office }) => {
+export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, office, onOpen }) => {
   return <Box
     display="flex"
     justifyContent="space-between"
@@ -20,6 +21,6 @@ export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, offic
       <h1>{name}</h1>
       <h2>{contractType} - {office}</h2>
     </header>
-    <Button>See more</Button>
+    <Button onClick={onOpen}>See more</Button>
   </Box>
 });

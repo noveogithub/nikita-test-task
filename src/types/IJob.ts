@@ -1,5 +1,10 @@
 import { IContractType } from "./IContractType";
 
+type WebsiteUrl = {
+  website_reference: string;
+  url: string;
+}
+
 export type IJob = {
   id: number;
   reference: string;
@@ -14,5 +19,6 @@ export type IJob = {
   };
   department: {
     name: string;
-  }
+  };
+  websites_urls: WebsiteUrl[];
 }

@@ -12,8 +12,8 @@ import store from './redux/store';
 const theme = createTheme()
 
 ReactDOM.render(<Provider store={store}>
-  <GlobalStyle />
   <ThemeProvider theme={theme}>
+    <GlobalStyle />
     <App />
   </ThemeProvider>
 </Provider>, document.getElementById('root'));

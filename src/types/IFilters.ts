@@ -1,6 +1,6 @@
 export type IFilters = {
   search: string;
-  contractType: string | null;
-  publishedAt: string | null;
+  contractType: string;
+  publishedAt: Date;
   groupBy: string;
 }

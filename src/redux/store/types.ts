@@ -1,5 +1,6 @@
 import { IJob } from "../../types/IJob";
 import { IFilters } from "../../types/IFilters";
+import { IPreview } from "../../types/IPreview";
 
 export type IStore = {
   jobs: {
@@ -7,5 +8,8 @@ export type IStore = {
     error: string;
     loading: boolean;
   },
-  ui: IFilters
+  ui: {
+    filters: IFilters;
+    preview: IPreview,
+  }
 }

@@ -13,6 +13,10 @@ import { Filters } from './components/Filters';
 import { IFilters } from './types/IFilters';
 import { getCurrentFilters } from './redux/selectors/getCurrentFilters';
 import { getContractTypes } from './redux/selectors/getContractTypes';
+import { getPreviewingJob } from './redux/selectors/getPreviewingJob';
+import { previewJob } from './redux/actions/preview';
+import { IPreview } from './types/IPreview';
+import { JobModal } from './components/JobModal';
 
 const Heading = styled.header`
   text-align: center;
@@ -25,9 +29,20 @@ type AppProps = {
   filters: IFilters;
   contractTypes: string[];
   onFilterChange: (filters: IFilters) => void;
+  previewingJob: IJob | null;
+  previewJob: (preview: IPreview) => void;
 }
 
-const App: React.FC<AppProps> = ({ loading, groups, filters, onFilterChange, onRequest, contractTypes }) => {
+const App: React.FC<AppProps> = ({
+  loading,
+  groups,
+  filters,
+  onFilterChange,
+  onRequest,
+  contractTypes,
+  previewingJob,
+  previewJob,
+}) => {
   useEffect(() => {
     onRequest();
   }, [onRequest]);
@@ -43,7 +58,7 @@ const App: React.FC<AppProps> = ({ loading, groups, filters, onFilterChange, onR
       </Text>
     </header>
     <details>
-      <JobList items={group} />
+      <JobList items={group} onOpen={previewJob} />
     </details>
   </summary>;
 
@@ -51,6 +66,10 @@ const App: React.FC<AppProps> = ({ loading, groups, filters, onFilterChange, onR
     <Heading>
       <Text variant="h1">Our offers</Text>
     </Heading>
+    {previewingJob && <JobModal onClose={() => previewJob({
+      jobId: null,
+      isOpen: false,
+    })} {...previewingJob} />}
     <Filters
       filters={filters}
       onChange={onFilterChange}
@@ -66,12 +85,14 @@ const mapStateToProps = (state: IStore) => ({
   groups: getGroupedJobOffers(state),
   loading: state.jobs.loading,
   filters: getCurrentFilters(state),
-  contractTypes: getContractTypes(state)
+  contractTypes: getContractTypes(state),
+  previewingJob: getPreviewingJob(state),
 })
 
 const mapDispatchToProps = {
   onRequest: jobRequest,
   onFilterChange: filtersChange,
+  previewJob: previewJob,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

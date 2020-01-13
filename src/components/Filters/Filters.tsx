@@ -1,6 +1,7 @@
 import React, { memo, ChangeEvent } from 'react';
 import { DatePicker, InputText, Select } from 'welcome-ui';
 
+import './Filters.css';
 import styled from '@xstyled/styled-components';
 import { IFilters } from '../../types/IFilters';
 import { NONE } from '../../redux/selectors/getGroupedJobOffers';
@@ -85,6 +86,7 @@ export const Filters: React.FC<FiltersProps> = memo(({
     <Item>
       <DatePicker
         value={filters.publishedAt?.toString() || ''}
+        iconPlacement="right"
         onChange={onDateChange} />
     </Item>
     <Item>

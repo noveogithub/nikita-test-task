@@ -13,7 +13,7 @@ export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, offic
     display="flex"
     justifyContent="space-between"
     alignItems="center"
-    backgroundColor="primary.100"
+    backgroundColor="info.100"
     margin="0 0 10px 0"
     padding="15px"
   >

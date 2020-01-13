@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Alert, Badge, Box, Text, Tooltip } from 'welcome-ui';
+import { Alert, Box, Text } from 'welcome-ui';
 import { Dictionary, map } from 'lodash';
 import styled from '@xstyled/styled-components';
 
-import { JobList } from './components/JobList';
 import { jobRequest, filtersChange } from './redux/actions/jobs';
 import { getGroupedJobOffers } from './redux/selectors/getGroupedJobOffers';
 import { IStore } from './redux/store/types';
@@ -17,6 +16,7 @@ import { getPreviewingJob } from './redux/selectors/getPreviewingJob';
 import { previewJob } from './redux/actions/preview';
 import { IPreview } from './types/IPreview';
 import { JobModal } from './components/JobModal';
+import { GroupTabs } from './components/GroupTabs';
 
 const Heading = styled.header`
   text-align: center;
@@ -47,20 +47,6 @@ const App: React.FC<AppProps> = ({
     onRequest();
   }, [onRequest]);
 
-  const renderGroup = (group: IJob[], key: string) => <summary key={key}>
-    <header>
-      <Text variant="h4">
-        {key}
-        {' '}
-        <Tooltip content={`Total items in this group: ${group.length}`}>
-          <Badge>{group.length}</Badge>
-        </Tooltip>
-      </Text>
-    </header>
-    <details>
-      <JobList items={group} onOpen={previewJob} />
-    </details>
-  </summary>;
 
   return (<Box padding="25px">
     <Heading>
@@ -75,9 +61,11 @@ const App: React.FC<AppProps> = ({
       onChange={onFilterChange}
       contractTypes={contractTypes}
     />
-    {loading ? <Alert variant="info">Wait a moment...</Alert> : <>
-      {map(groups, renderGroup)}
-    </>}
+    {loading ? <Alert variant="info">Wait a moment...</Alert> : <GroupTabs
+      key={filters.groupBy}
+      groups={groups}
+      previewJob={previewJob}
+    />}
   </Box>)
 }
 

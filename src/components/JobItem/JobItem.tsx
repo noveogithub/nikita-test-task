@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Box, Button } from 'welcome-ui';
+import { Box, Button, Text } from 'welcome-ui';
 
 type JobItemProps = {
   name: string;
@@ -18,8 +18,8 @@ export const JobItem: React.FC<JobItemProps> = memo(({ name, contractType, offic
     padding="15px"
   >
     <header>
-      <h1>{name}</h1>
-      <h2>{contractType} - {office}</h2>
+      <Text variant="body1">{name}</Text>
+      <Text variant="body2">{contractType} - {office}</Text>
     </header>
     <Button onClick={onOpen}>See more</Button>
   </Box>

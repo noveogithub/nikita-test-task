@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Button, Box, Text } from 'welcome-ui';
 import styled from '@xstyled/styled-components';
 
@@ -16,8 +16,9 @@ const Overlay = styled.div`
   height: 100vh;
   justify-content: center;
   left: 0;
-  overflow: auto;
-  padding: 50px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 25px;
   position: fixed;
   top: 0;
   width: 100vw;
@@ -39,12 +40,18 @@ export const JobModal: React.FC<JobModalProps> = memo(({ onClose, name, descript
     e.stopPropagation()
   }
 
+  useEffect(() => {
+    document.body.classList.add('overflow');
+
+    return () => document.body.classList.remove('overflow');
+  }, []);
+
   return <Overlay onClick={onClose}>
-    <Box backgroundColor="light.900" padding="50px" onClick={prevent}>
-      <h1>{name}</h1>
-      <h2>Job Description</h2>
+    <Box backgroundColor="light.900" onClick={prevent} padding="50px">
+      <Text variant="h1">{name}</Text>
+      <Text variant="h2">Job Description</Text>
       <div dangerouslySetInnerHTML={{ __html: description }} />
-      <h2>Profile</h2>
+      <Text variant="h2">Profile</Text>
       <div dangerouslySetInnerHTML={{ __html: profile }} />
       <ButtonWrapper>
         <Button onClick={() => {

@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react';
 import { Alert } from 'welcome-ui';
 
-import { IJob } from '../../types/IJob';
-import { JobItem } from '../JobItem';
-import { IPreview } from '../../types/IPreview';
+import { IJob } from '@app/types/IJob';
+import { JobItem } from '@app/components/JobItem';
+import { IPreview } from '@app/types/IPreview';
 
 type JobListProps = {
   items: IJob[];

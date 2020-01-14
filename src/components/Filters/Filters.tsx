@@ -1,10 +1,10 @@
 import React, { memo, ChangeEvent, useMemo } from 'react';
 import { DatePicker, InputText, Select } from 'welcome-ui';
+import styled from '@xstyled/styled-components';
 
 import './Filters.css';
-import styled from '@xstyled/styled-components';
-import { IFilters } from '../../types/IFilters';
-import { NONE } from '../../constants/None';
+import { IFilters } from '@app/types/IFilters';
+import { NONE } from '@app/constants/None';
 
 const Wrapper = styled.div`
   display: flex;

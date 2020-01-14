@@ -1,7 +1,8 @@
 import React, { memo, useContext, useCallback } from 'react';
 import { Box, Button, Text, Tooltip } from 'welcome-ui';
 import Highlighter from "react-highlight-words";
-import { SearchContext } from '../../contexts/SearchContext';
+
+import { SearchContext } from '@app/contexts/SearchContext';
 
 type JobItemProps = {
   id: number;

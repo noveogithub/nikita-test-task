@@ -1,7 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 
-import { IJob } from "../../types/IJob";
-import { IFilters } from "../../types/IFilters";
+import { IJob } from "@app/types/IJob";
+import { IFilters } from "@app/types/IFilters";
 
 export const jobRequest = createAction('@@JOBS/REQUEST')
 export const jobRequestSuccess = createAction<IJob[]>('@@JOBS/REQUEST_SUCCESS')

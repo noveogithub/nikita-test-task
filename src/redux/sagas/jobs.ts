@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import { jobRequestSuccess, jobRequestError, jobRequest } from '../actions/jobs';
-import { ENDPOINT } from '../../constants/Endpoint';
+import { jobRequestSuccess, jobRequestError, jobRequest } from '@app/redux/actions/jobs';
+import { ENDPOINT } from '@app/constants/Endpoint';
 
 function* jobSaga() {
   try {

@@ -3,7 +3,7 @@ import { groupBy } from 'lodash';
 
 import { getCurrentFilters } from "./getCurrentFilters";
 import { getFilteredJobOffers } from "./getFilteredJobOffers";
-import { NONE } from "../../constants/None";
+import { NONE } from "@app/constants/None";
 
 /**
  * Helper selector to group job offers by

@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { jobRequestError, jobRequest, jobRequestSuccess } from '../actions/jobs';
-import { initialState } from '../store/initialState';
+import { jobRequestError, jobRequest, jobRequestSuccess } from '@app/redux/actions/jobs';
+import { initialState } from '@app/redux/store/initialState';
 
 export const jobReducer = createReducer(initialState.jobs, {
   [jobRequest.type]: state => ({

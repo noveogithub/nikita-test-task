@@ -1,4 +1,4 @@
-import { IWebsiteUrl } from "../types/IWebsiteUrl"
+import { IWebsiteUrl } from "@app/types/IWebsiteUrl"
 
 /**
  * Helper function to find url to redirect to when clicking

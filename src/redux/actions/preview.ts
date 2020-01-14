@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 
-import { IPreview } from "../../types/IPreview";
+import { IPreview } from "@app/types/IPreview";
 
 export const previewJob = createAction<IPreview>('@@JOBS/PREVIEW')

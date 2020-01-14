@@ -2,9 +2,9 @@ import React, { memo, useEffect } from 'react';
 import { map, Dictionary } from 'lodash';
 import { Alert, TabList, Tab, TabPanel, useTabState } from 'welcome-ui';
 
-import { IJob } from '../../types/IJob';
-import { IPreview } from '../../types/IPreview';
-import { JobList } from '../JobList';
+import { IJob } from '@app/types/IJob';
+import { IPreview } from '@app/types/IPreview';
+import { JobList } from '@app/components/JobList';
 
 type GroupTabsProps = {
   groups: Dictionary<IJob[]>;

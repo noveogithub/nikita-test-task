@@ -2,9 +2,9 @@ import { createSelector } from "@reduxjs/toolkit";
 import { isAfter } from 'date-fns';
 
 import { getCurrentFilters } from "./getCurrentFilters";
-import { IJob } from "../../types/IJob";
+import { IJob } from "@app/types/IJob";
 import { getJobOffers } from "./getJobOffers";
-import { NONE } from "../../constants/None";
+import { NONE } from "@app/constants/None";
 
 /**
  * Helper selector to get all jobs that match

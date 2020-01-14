@@ -2,8 +2,8 @@ import { createSelector } from "@reduxjs/toolkit";
 import { map, uniq } from 'lodash';
 
 import { getJobOffers } from "./getJobOffers";
-import { IJob } from "../../types/IJob";
-import { NONE } from "../../constants/None";
+import { IJob } from "@app/types/IJob";
+import { NONE } from "@app/constants/None";
 
 /**
  * Helper selector to collect all

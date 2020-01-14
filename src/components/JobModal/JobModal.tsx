@@ -2,8 +2,8 @@ import React, { memo, useEffect, useCallback } from 'react';
 import { Button, Box, Text } from 'welcome-ui';
 import styled from '@xstyled/styled-components';
 
-import { IJob } from '../../types/IJob';
-import { getApplyUrl } from '../../utils/getApplyUrl';
+import { IJob } from '@app/types/IJob';
+import { getApplyUrl } from '@app/utils/getApplyUrl';
 
 type JobModalProps = IJob & {
   onClose: () => void;

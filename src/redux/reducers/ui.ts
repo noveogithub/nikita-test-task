@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { initialState } from '../store/initialState';
-import { filtersChange } from '../actions/jobs';
-import { previewJob } from '../actions/preview';
+import { initialState } from '@app/redux/store/initialState';
+import { filtersChange } from '@app/redux/actions/jobs';
+import { previewJob } from '@app/redux/actions/preview';
 
 
 export const uiReducer = createReducer(initialState.ui, {

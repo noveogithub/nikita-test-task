@@ -17,16 +17,21 @@ type GroupTabsProps = {
  */
 export const GroupTabs: React.FC<GroupTabsProps> = memo(({ groups, previewJob }) => {
 
-  if (Object.keys(groups).length === 0 || Object.values(groups).every(group => group.length === 0)) {
+  const noGroups = Object.keys(groups).length === 0;
+  const areGroupsEmpty = Object.values(groups).every(group => group.length === 0);
+
+  if (noGroups || areGroupsEmpty) {
     return <Alert variant="info">No data to be displayed</Alert>
   }
 
+  const [firstGroup] = Object.keys(groups);
+
   const tab = useTabState({
-    selectedId: Object.keys(groups)[0],
+    selectedId: firstGroup,
   });
 
   useEffect(() => {
-    tab.move(Object.keys(groups)[0], true);
+    tab.move(firstGroup, true);
     // eslint-disable-next-line
   }, [groups])
 

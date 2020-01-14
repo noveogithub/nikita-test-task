@@ -1,6 +1,7 @@
-import React, { memo, ChangeEvent, useMemo } from 'react';
+import React, { memo, ChangeEvent, useMemo, useState, useEffect, useRef } from 'react';
 import { DatePicker, InputText, Select } from 'welcome-ui';
 import styled from '@xstyled/styled-components';
+import { debounce } from 'lodash';
 
 import './Filters.css';
 import { IFilters } from '@app/types/IFilters';
@@ -39,34 +40,53 @@ export const Filters: React.FC<FiltersProps> = memo(({
   filters,
   onChange,
 }) => {
+
+  const [state, setState] = useState<IFilters>(filters);
+  useEffect(() => {
+    setState(filters);
+  }, [filters])
+
+  const debouncedChange = useRef(debounce((filters: IFilters) => {
+    onChange(filters);
+  }, 750));
+
   const onSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target as HTMLInputElement;
 
-    onChange({
+    const nextFilters = {
       ...filters,
       search: value
-    });
+    };
+
+    setState(nextFilters);
+    debouncedChange.current(nextFilters);
   };
 
   const onGroupByChange = (value: string) => {
-    onChange({
+    const nextFilters = {
       ...filters,
       groupBy: value,
-    })
+    }
+
+    onChange(nextFilters);
   };
 
   const onContractTypeChange = (value: string) => {
-    onChange({
+    const nextFilters = {
       ...filters,
       contractType: value,
-    });
+    };
+
+    onChange(nextFilters);
   };
 
   const onDateChange = (date: Date) => {
-    onChange({
+    const nextFilters = {
       ...filters,
       publishedAt: date,
-    })
+    }
+
+    onChange(nextFilters);
   };
 
   const types = useMemo(() => contractTypes.map(v => ({
@@ -78,7 +98,7 @@ export const Filters: React.FC<FiltersProps> = memo(({
     <Item>
       <InputText
         placeholder="Your dream job?"
-        value={filters.search || ''}
+        value={state.search || ''}
         onChange={onSearchChange}
       />
     </Item>

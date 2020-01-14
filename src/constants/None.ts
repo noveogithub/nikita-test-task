@@ -1,1 +1,1 @@
-export const NONE = 'none';
+export const NONE = "none";

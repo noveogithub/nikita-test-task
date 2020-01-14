@@ -15,4 +15,4 @@ export type IJob = {
     name: string;
   };
   websites_urls: IWebsiteUrl[];
-}
+};

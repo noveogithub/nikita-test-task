@@ -4,12 +4,12 @@ import { IPreview } from "./IPreview";
 
 export type IStore = {
   jobs: {
-    data: IJob[],
+    data: IJob[];
     error: string;
     loading: boolean;
-  },
+  };
   ui: {
     filters: IFilters;
-    preview: IPreview,
-  }
-}
+    preview: IPreview;
+  };
+};

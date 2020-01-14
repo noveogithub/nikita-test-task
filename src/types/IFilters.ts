@@ -3,4 +3,4 @@ export type IFilters = {
   contractType: string;
   publishedAt: Date;
   groupBy: string;
-}
+};

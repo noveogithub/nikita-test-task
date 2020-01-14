@@ -1,13 +1,13 @@
-import React, { memo, useEffect, useCallback } from 'react';
-import { Button, Box, Text } from 'welcome-ui';
-import styled from '@xstyled/styled-components';
+import React, { memo, useEffect, useCallback } from "react";
+import { Button, Box, Text } from "welcome-ui";
+import styled from "@xstyled/styled-components";
 
-import { IJob } from '@app/types/IJob';
-import { getApplyUrl } from '@app/utils/getApplyUrl';
+import { IJob } from "@app/types/IJob";
+import { getApplyUrl } from "@app/utils/getApplyUrl";
 
 type JobModalProps = IJob & {
   onClose: () => void;
-}
+};
 
 const Overlay = styled.div`
   align-items: center;
@@ -33,42 +33,48 @@ const ButtonWrapper = styled.div`
   margin: 10px 0;
 `;
 
-const OVERFLOW_CLASSNAME = 'overlow';
+const OVERFLOW_CLASSNAME = "overlow";
 
 // Component to render currently opened job offer
-export const JobModal: React.FC<JobModalProps> = memo(({ onClose, name, description, profile, websites_urls }) => {
-  // Prevent default click on overlay
-  const prevent = useCallback((e: Event) => {
-    e.stopPropagation()
-  }, []);
+export const JobModal: React.FC<JobModalProps> = memo(
+  ({ onClose, name, description, profile, websites_urls }) => {
+    // Prevent default click on overlay
+    const prevent = useCallback((e: Event) => {
+      e.stopPropagation();
+    }, []);
 
-  const applyUrl = getApplyUrl(websites_urls);
-  const onApply = useCallback(() => {
-    if (applyUrl) {
-      window.location.href = applyUrl.url
-    }
-  }, [applyUrl]);
+    const applyUrl = getApplyUrl(websites_urls);
+    const onApply = useCallback(() => {
+      if (applyUrl) {
+        window.location.href = applyUrl.url;
+      }
+    }, [applyUrl]);
 
-  /**
-   * Add class to prevent body scroll when mounting modal
-   * And remove it when modal dismounts
-   */
-  useEffect(() => {
-    document.body.classList.add(OVERFLOW_CLASSNAME);
+    /**
+     * Add class to prevent body scroll when mounting modal
+     * And remove it when modal dismounts
+     */
+    useEffect(() => {
+      document.body.classList.add(OVERFLOW_CLASSNAME);
 
-    return () => document.body.classList.remove(OVERFLOW_CLASSNAME);
-  }, []);
+      return () => document.body.classList.remove(OVERFLOW_CLASSNAME);
+    }, []);
 
-  return <Overlay onClick={onClose}>
-    <Box backgroundColor="light.900" onClick={prevent} padding="50px">
-      <Text variant="h1">{name}</Text>
-      <Text variant="h2">Job Description</Text>
-      <div dangerouslySetInnerHTML={{ __html: description }} />
-      <Text variant="h2">Profile</Text>
-      <div dangerouslySetInnerHTML={{ __html: profile }} />
-      <ButtonWrapper>
-        <Button onClick={onApply} size="xl"><Text size="xl">APPLY</Text></Button>
-      </ButtonWrapper>
-    </Box>
-  </Overlay>
-});
+    return (
+      <Overlay onClick={onClose}>
+        <Box backgroundColor="light.900" onClick={prevent} padding="50px">
+          <Text variant="h1">{name}</Text>
+          <Text variant="h2">Job Description</Text>
+          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <Text variant="h2">Profile</Text>
+          <div dangerouslySetInnerHTML={{ __html: profile }} />
+          <ButtonWrapper>
+            <Button onClick={onApply} size="xl">
+              <Text size="xl">APPLY</Text>
+            </Button>
+          </ButtonWrapper>
+        </Box>
+      </Overlay>
+    );
+  }
+);

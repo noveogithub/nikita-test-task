@@ -33,7 +33,10 @@ const ButtonWrapper = styled.div`
   margin: 10px 0;
 `;
 
-const OVERFLOW_CLASSNAME = "overlow";
+const Wrapper = styled.div`
+  max-height: 100%;
+  overflow: auto;
+`;
 
 // Component to render currently opened job offer
 export const JobModal: React.FC<JobModalProps> = memo(
@@ -55,25 +58,29 @@ export const JobModal: React.FC<JobModalProps> = memo(
      * And remove it when modal dismounts
      */
     useEffect(() => {
-      document.body.classList.add(OVERFLOW_CLASSNAME);
+      document.body.style.overflow = "hidden";
 
-      return () => document.body.classList.remove(OVERFLOW_CLASSNAME);
+      return () => {
+        document.body.style.overflow = "";
+      };
     }, []);
 
     return (
       <Overlay onClick={onClose}>
-        <Box backgroundColor="light.900" onClick={prevent} padding="50px">
-          <Text variant="h1">{name}</Text>
-          <Text variant="h2">Job Description</Text>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
-          <Text variant="h2">Profile</Text>
-          <div dangerouslySetInnerHTML={{ __html: profile }} />
-          <ButtonWrapper>
-            <Button onClick={onApply} size="xl">
-              <Text size="xl">APPLY</Text>
-            </Button>
-          </ButtonWrapper>
-        </Box>
+        <Wrapper>
+          <Box backgroundColor="light.900" onClick={prevent} padding="15px">
+            <Text variant="h1">{name}</Text>
+            <Text variant="h2">Job Description</Text>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
+            <Text variant="h2">Profile</Text>
+            <div dangerouslySetInnerHTML={{ __html: profile }} />
+            <ButtonWrapper>
+              <Button onClick={onApply} size="xl">
+                <Text size="xl">APPLY</Text>
+              </Button>
+            </ButtonWrapper>
+          </Box>
+        </Wrapper>
       </Overlay>
     );
   }

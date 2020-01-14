@@ -6,6 +6,10 @@ import { getFilteredJobOffers } from "./getFilteredJobOffers";
 
 export const NONE = 'none';
 
+/**
+ * Helper selector to group job offers by
+ * Currently selected groupBy filter
+ */
 export const getGroupedJobOffers = createSelector(
   getFilteredJobOffers,
   getCurrentFilters,

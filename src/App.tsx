@@ -6,7 +6,7 @@ import styled from '@xstyled/styled-components';
 
 import { jobRequest, filtersChange } from './redux/actions/jobs';
 import { getGroupedJobOffers } from './redux/selectors/getGroupedJobOffers';
-import { IStore } from './redux/store/types';
+import { IStore } from './types/IStore';
 import { IJob } from './types/IJob';
 import { Filters } from './components/Filters';
 import { IFilters } from './types/IFilters';

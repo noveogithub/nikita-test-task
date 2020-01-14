@@ -1,8 +1,4 @@
-import { createSelector } from "@reduxjs/toolkit";
+import { IStore } from "../../types/IStore";
 
-import { IStore } from "../store/types";
-
-export const getCurrentFilters = createSelector(
-  (state: IStore) => state.ui.filters,
-  filters => filters,
-);
+// Helper selector to get current filters
+export const getCurrentFilters = (state: IStore) => state.ui.filters;

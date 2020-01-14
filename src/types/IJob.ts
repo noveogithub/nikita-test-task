@@ -1,15 +1,9 @@
 import { IContractType } from "./IContractType";
-
-type WebsiteUrl = {
-  website_reference: string;
-  url: string;
-}
+import { IWebsiteUrl } from "./IWebsiteUrl";
 
 export type IJob = {
   id: number;
-  reference: string;
   name: string;
-  slug: string;
   description: string;
   published_at: string;
   profile: string;
@@ -20,5 +14,5 @@ export type IJob = {
   department: {
     name: string;
   };
-  websites_urls: WebsiteUrl[];
+  websites_urls: IWebsiteUrl[];
 }

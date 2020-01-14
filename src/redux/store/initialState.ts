@@ -1,6 +1,6 @@
 import { addMonths } from 'date-fns';
 
-import { IStore } from "./types";
+import { IStore } from "../../types/IStore";
 import { NONE } from '../selectors/getGroupedJobOffers';
 
 export const initialState: IStore = {
@@ -13,6 +13,7 @@ export const initialState: IStore = {
     filters: {
       search: '',
       contractType: NONE,
+      // By default set publishedAt to current date minus one month
       publishedAt: addMonths(new Date(), -1),
       groupBy: NONE,
     },

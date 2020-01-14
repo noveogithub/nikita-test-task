@@ -1,7 +1,4 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { IStore } from "../store/types";
+import { IStore } from "../../types/IStore";
 
-export const getPreview = createSelector(
-  (state: IStore) => state.ui.preview,
-  data => data
-);
+// Helper selector to get current preview settings
+export const getPreview = (state: IStore) => state.ui.preview

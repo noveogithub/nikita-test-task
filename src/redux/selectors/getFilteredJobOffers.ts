@@ -6,6 +6,10 @@ import { IJob } from "../../types/IJob";
 import { getJobOffers } from "./getJobOffers";
 import { NONE } from "./getGroupedJobOffers";
 
+/**
+ * Helper selector to get all jobs that match
+ * Currently applied filters
+ */
 export const getFilteredJobOffers = createSelector(
   getJobOffers,
   getCurrentFilters,

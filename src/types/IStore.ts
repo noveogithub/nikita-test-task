@@ -1,6 +1,6 @@
-import { IJob } from "../../types/IJob";
-import { IFilters } from "../../types/IFilters";
-import { IPreview } from "../../types/IPreview";
+import { IJob } from "./IJob";
+import { IFilters } from "./IFilters";
+import { IPreview } from "./IPreview";
 
 export type IStore = {
   jobs: {

@@ -3,6 +3,10 @@ import { createSelector } from "@reduxjs/toolkit";
 import { getJobOffers } from "./getJobOffers";
 import { getPreview } from "./getPreview";
 
+/**
+ * Helper selector to get job offer for modal
+ * If modal is currently opened
+ */
 export const getPreviewingJob = createSelector(
   getJobOffers,
   getPreview,

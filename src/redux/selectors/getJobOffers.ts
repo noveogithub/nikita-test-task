@@ -1,7 +1,4 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { IStore } from "../store/types";
+import { IStore } from "../../types/IStore";
 
-export const getJobOffers = createSelector(
-  (state: IStore) => state.jobs.data,
-  data => data
-);
+// Helper selector to get job offer data
+export const getJobOffers = (state: IStore) => state.jobs.data;

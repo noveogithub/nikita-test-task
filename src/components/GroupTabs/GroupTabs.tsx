@@ -33,7 +33,7 @@ export const GroupTabs: React.FC<GroupTabsProps> = memo(
     });
 
     useEffect(() => {
-      tab.move(firstGroup, true);
+      tab.select(firstGroup, true);
       // eslint-disable-next-line
     }, [groups]);
 

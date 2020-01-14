@@ -17,14 +17,20 @@ type JobItemProps = {
 const matchesSearchInside = (
   search: string,
   profile: string,
-  description: string
+  description: string,
+  contractType: string,
+  office: string
 ) => {
   if (!search) {
     return false;
   }
-  return [profile, description]
-    .map(v => v.toLowerCase())
-    .some(v => v.includes(search.toString()));
+
+  const searchWords = search.split("").map(v => v.toLowerCase());
+  const content = [profile, description, contractType, office]
+    .join()
+    .toLowerCase();
+
+  return searchWords.every(w => content.includes(w));
 };
 
 // Component to render single job item in list
@@ -32,7 +38,13 @@ export const JobItem: React.FC<JobItemProps> = memo(
   ({ id, name, profile, description, contractType, office, onOpen }) => {
     const search = useContext(SearchContext);
 
-    const matches = matchesSearchInside(search, profile, description);
+    const matches = matchesSearchInside(
+      search,
+      profile,
+      description,
+      contractType || "",
+      office
+    );
 
     const callback = useCallback(() => {
       onOpen(id);
@@ -57,8 +69,12 @@ export const JobItem: React.FC<JobItemProps> = memo(
             <Highlighter
               searchWords={search.split(" ")}
               textToHighlight={contractType || ""}
-            />{" "}
-            - {office}
+            />
+            {" - "}
+            <Highlighter
+              searchWords={search.split(" ")}
+              textToHighlight={office || ""}
+            />
           </Text>
         </header>
         <Button

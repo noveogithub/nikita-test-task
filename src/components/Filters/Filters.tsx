@@ -4,7 +4,7 @@ import { DatePicker, InputText, Select } from 'welcome-ui';
 import './Filters.css';
 import styled from '@xstyled/styled-components';
 import { IFilters } from '../../types/IFilters';
-import { NONE } from '../../redux/selectors/getGroupedJobOffers';
+import { NONE } from '../../constants/None';
 
 const Wrapper = styled.div`
   display: flex;

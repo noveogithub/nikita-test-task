@@ -3,7 +3,7 @@ import { map, uniq } from 'lodash';
 
 import { getJobOffers } from "./getJobOffers";
 import { IJob } from "../../types/IJob";
-import { NONE } from "./getGroupedJobOffers";
+import { NONE } from "../../constants/None";
 
 /**
  * Helper selector to collect all

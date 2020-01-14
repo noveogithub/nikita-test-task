@@ -1,7 +1,7 @@
 import { addMonths } from 'date-fns';
 
 import { IStore } from "../../types/IStore";
-import { NONE } from '../selectors/getGroupedJobOffers';
+import { NONE } from '../../constants/None';
 
 export const initialState: IStore = {
   jobs: {

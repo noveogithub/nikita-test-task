@@ -4,7 +4,7 @@ import { isAfter } from 'date-fns';
 import { getCurrentFilters } from "./getCurrentFilters";
 import { IJob } from "../../types/IJob";
 import { getJobOffers } from "./getJobOffers";
-import { NONE } from "./getGroupedJobOffers";
+import { NONE } from "../../constants/None";
 
 /**
  * Helper selector to get all jobs that match

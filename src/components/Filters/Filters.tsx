@@ -1,4 +1,4 @@
-import React, { memo, ChangeEvent } from 'react';
+import React, { memo, ChangeEvent, useMemo } from 'react';
 import { DatePicker, InputText, Select } from 'welcome-ui';
 
 import './Filters.css';
@@ -69,6 +69,11 @@ export const Filters: React.FC<FiltersProps> = memo(({
     })
   };
 
+  const types = useMemo(() => contractTypes.map(v => ({
+    label: v === NONE ? 'All Types' : v,
+    value: v
+  })), [contractTypes]);
+
   return <Wrapper>
     <Item>
       <InputText
@@ -81,7 +86,7 @@ export const Filters: React.FC<FiltersProps> = memo(({
       <Select
         value={filters.contractType}
         onChange={onContractTypeChange}
-        options={contractTypes.map(v => ({ label: v === NONE ? 'All Types' : v, value: v }))}
+        options={types}
       />
     </Item>
     <Item>

@@ -11,12 +11,13 @@ import store from './redux/store';
 
 const theme = createTheme()
 
-ReactDOM.render(<Provider store={store}>
+ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <App />
-  </ThemeProvider>
-</Provider>, document.getElementById('root'));
+    <Provider store={store}>
+      <GlobalStyle />
+      <App />
+    </Provider>
+  </ThemeProvider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -10,6 +10,7 @@ type JobListProps = {
   onOpen: (preview: IPreview) => void;
 }
 
+// Component to render list (group) of job offers 
 export const JobList: React.FC<JobListProps> = memo(({ items, onOpen }) => {
 
   const onOpenJob = useCallback((id: number) => onOpen({

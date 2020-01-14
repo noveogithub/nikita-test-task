@@ -33,6 +33,7 @@ type FiltersProps = {
   contractTypes: string[];
 }
 
+// Component to render filter bar
 export const Filters: React.FC<FiltersProps> = memo(({
   contractTypes,
   filters,

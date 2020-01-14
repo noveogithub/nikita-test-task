@@ -20,6 +20,7 @@ const matchesSearchInside = (search: string, profile: string, description: strin
   return [profile, description].map(v => v.toLowerCase()).some(v => v.includes(search.toString()));
 }
 
+// Component to render single job item in list
 export const JobItem: React.FC<JobItemProps> = memo(({
   id,
   name,

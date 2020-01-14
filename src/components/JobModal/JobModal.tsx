@@ -33,6 +33,7 @@ const ButtonWrapper = styled.div`
   margin: 10px 0;
 `;
 
+// Component to render currently opened job offer
 export const JobModal: React.FC<JobModalProps> = memo(({ onClose, name, description, profile, websites_urls }) => {
   // Prevent default click on overlay
   const prevent = useCallback((e: Event) => {

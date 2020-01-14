@@ -11,6 +11,10 @@ type GroupTabsProps = {
   previewJob: (preview: IPreview) => void;
 }
 
+/**
+ * Component to render tabs based on current groupBy filter
+ * Each group is rendered as separate tab item & panel
+ */
 export const GroupTabs: React.FC<GroupTabsProps> = memo(({ groups, previewJob }) => {
 
   if (Object.keys(groups).length === 0 || Object.values(groups).every(group => group.length === 0)) {

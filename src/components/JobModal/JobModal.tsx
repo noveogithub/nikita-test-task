@@ -1,8 +1,9 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useCallback } from 'react';
 import { Button, Box, Text } from 'welcome-ui';
 import styled from '@xstyled/styled-components';
 
 import { IJob } from '../../types/IJob';
+import { getApplyUrl } from '../../utils/getApplyUrl';
 
 type JobModalProps = IJob & {
   onClose: () => void;
@@ -33,13 +34,22 @@ const ButtonWrapper = styled.div`
 `;
 
 export const JobModal: React.FC<JobModalProps> = memo(({ onClose, name, description, profile, websites_urls }) => {
-
-  const applyUrl = websites_urls.find(url => url.website_reference === 'wttj_fr');
-
-  const prevent = (e: Event) => {
+  // Prevent default click on overlay
+  const prevent = useCallback((e: Event) => {
     e.stopPropagation()
-  }
+  }, []);
 
+  const applyUrl = getApplyUrl(websites_urls);
+  const onApply = useCallback(() => {
+    if (applyUrl) {
+      window.location.href = applyUrl.url
+    }
+  }, [applyUrl]);
+
+  /**
+   * Add class to prevent body scroll when mounting modal
+   * And remove it when modal dismounts
+   */
   useEffect(() => {
     document.body.classList.add('overflow');
 
@@ -54,11 +64,7 @@ export const JobModal: React.FC<JobModalProps> = memo(({ onClose, name, descript
       <Text variant="h2">Profile</Text>
       <div dangerouslySetInnerHTML={{ __html: profile }} />
       <ButtonWrapper>
-        <Button onClick={() => {
-          if (applyUrl) {
-            window.location.href = applyUrl.url
-          }
-        }} size="xl"><Text size="xl">APPLY</Text></Button>
+        <Button onClick={onApply} size="xl"><Text size="xl">APPLY</Text></Button>
       </ButtonWrapper>
     </Box>
   </Overlay>

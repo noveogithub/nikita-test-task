@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Alert, Box, Text } from 'welcome-ui';
 import { Dictionary } from 'lodash';
@@ -48,16 +48,17 @@ const App: React.FC<AppProps> = ({
     onRequest();
   }, [onRequest]);
 
+  const closeModal = useCallback(() => previewJob({
+    jobId: null,
+    isOpen: false,
+  }), [previewJob]);
 
   return (<Box padding="25px">
     <SearchContext.Provider value={filters.search}>
       <Heading>
         <Text variant="h1">Our offers</Text>
       </Heading>
-      {previewingJob && <JobModal onClose={() => previewJob({
-        jobId: null,
-        isOpen: false,
-      })} {...previewingJob} />}
+      {previewingJob && <JobModal onClose={closeModal} {...previewingJob} />}
       <Filters
         filters={filters}
         onChange={onFilterChange}

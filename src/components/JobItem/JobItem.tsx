@@ -1,15 +1,16 @@
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useCallback } from 'react';
 import { Box, Button, Text, Tooltip } from 'welcome-ui';
 import Highlighter from "react-highlight-words";
 import { SearchContext } from '../../contexts/SearchContext';
 
 type JobItemProps = {
+  id: number;
   name: string;
   profile: string;
   description: string;
   contractType: string | null;
   office: string;
-  onOpen: () => void;
+  onOpen: (id: number) => void;
 }
 
 const matchesSearchInside = (search: string, profile: string, description: string) => {
@@ -19,10 +20,22 @@ const matchesSearchInside = (search: string, profile: string, description: strin
   return [profile, description].map(v => v.toLowerCase()).some(v => v.includes(search.toString()));
 }
 
-export const JobItem: React.FC<JobItemProps> = memo(({ name, profile, description, contractType, office, onOpen }) => {
+export const JobItem: React.FC<JobItemProps> = memo(({
+  id,
+  name,
+  profile,
+  description,
+  contractType,
+  office,
+  onOpen
+}) => {
   const search = useContext(SearchContext);
 
   const matches = matchesSearchInside(search, profile, description);
+
+  const callback = useCallback(() => {
+    onOpen(id);
+  }, [id, onOpen]);
 
   return <Box
     display="flex"
@@ -33,10 +46,20 @@ export const JobItem: React.FC<JobItemProps> = memo(({ name, profile, descriptio
     padding="15px"
   >
     <header>
-      <Text variant="body1"><Highlighter searchWords={search.split(' ')} textToHighlight={name} /></Text>
-      <Text variant="body2"><Highlighter searchWords={search.split(' ')} textToHighlight={contractType || ''} /> - {office}</Text>
+      <Text variant="body1">
+        <Highlighter
+          searchWords={search.split(' ')}
+          textToHighlight={name}
+        />
+      </Text>
+      <Text variant="body2">
+        <Highlighter
+          searchWords={search.split(' ')}
+          textToHighlight={contractType || ''}
+        /> - {office}
+      </Text>
     </header>
-    <Button onClick={onOpen} variant={matches ? 'primary-warning' : 'primary'}>
+    <Button onClick={callback} variant={matches ? 'primary-warning' : 'primary'}>
       {matches ? <Tooltip content="Search matches inside">
         <span>See more</span>
       </Tooltip> : <span>See more</span>}

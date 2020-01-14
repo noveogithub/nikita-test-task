@@ -33,6 +33,8 @@ const ButtonWrapper = styled.div`
   margin: 10px 0;
 `;
 
+const OVERFLOW_CLASSNAME = 'overlow';
+
 // Component to render currently opened job offer
 export const JobModal: React.FC<JobModalProps> = memo(({ onClose, name, description, profile, websites_urls }) => {
   // Prevent default click on overlay
@@ -52,9 +54,9 @@ export const JobModal: React.FC<JobModalProps> = memo(({ onClose, name, descript
    * And remove it when modal dismounts
    */
   useEffect(() => {
-    document.body.classList.add('overflow');
+    document.body.classList.add(OVERFLOW_CLASSNAME);
 
-    return () => document.body.classList.remove('overflow');
+    return () => document.body.classList.remove(OVERFLOW_CLASSNAME);
   }, []);
 
   return <Overlay onClick={onClose}>

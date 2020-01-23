@@ -52,11 +52,9 @@ export const JobItem: React.FC<JobItemProps> = memo(
 
     return (
       <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
         backgroundColor="info.100"
         margin="0 0 10px 0"
+        height="100%"
         padding="15px">
         <header>
           <Text variant="body1">

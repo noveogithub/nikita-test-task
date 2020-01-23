@@ -7,7 +7,7 @@ import React, {
   useRef,
 } from "react";
 import { DatePicker, InputText, Select } from "welcome-ui";
-import styled from "@xstyled/styled-components";
+import styled, { css, down } from "@xstyled/styled-components";
 import { debounce } from "lodash";
 
 import "./Filters.css";
@@ -18,10 +18,25 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${down(
+    "md",
+    css`
+      flex-direction: column;
+    `
+  )}
 `;
 
 const Item = styled.div`
   margin: 5px;
+
+  ${down(
+    "md",
+    css`
+      flex: 1 0 auto;
+      width: 100%;
+    `
+  )}
 `;
 
 const OPTIONS = [
